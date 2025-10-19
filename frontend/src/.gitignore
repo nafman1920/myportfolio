@@ -1,0 +1,12 @@
+.env 
+
+# Node modules
+node_modules/
+
+# Vite or other bundler caches
+.cache/
+*.pack
+
+# Build output
+dist/
+build/

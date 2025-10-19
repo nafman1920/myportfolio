@@ -1,0 +1,105 @@
+/* === FOOTER === */
+.footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(17, 17, 17, 0.9);
+  border-top: 2px solid rgba(0, 255, 150, 0.3);
+  color: #caffda;
+  z-index: 50;
+  padding: 0.8rem 1rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 -3px 10px rgba(0, 255, 150, 0.15);
+  font-family: 'Roboto Slab', serif;
+}
+
+/* Container inside footer */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 1rem;
+  text-align: center;
+}
+
+/* Footer sections */
+.footer-left, .footer-center, .footer-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  text-shadow: 0 0 5px rgba(0, 255, 150, 0.5);
+}
+
+.footer-quote {
+  font-size: 0.95rem;
+  color: #00ffaa;
+  text-shadow: 0 0 10px rgba(0, 255, 180, 0.8);
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Footer icons */
+.footer-icon {
+  color: #caffda;
+  font-size: 1.5rem;
+  margin: 0 0.6rem;
+  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+  text-shadow: 0 0 6px rgba(0, 255, 150, 0.4);
+  animation: iconPulse 3s infinite ease-in-out;
+}
+
+.footer-icon:hover {
+  color: #00ffaa;
+  transform: scale(1.25) rotate(5deg);
+  text-shadow: 0 0 15px rgba(0, 255, 180, 1),
+               0 0 30px rgba(0, 200, 255, 0.8);
+}
+
+/* Neon glow animation */
+@keyframes iconPulse {
+  0%, 100% {
+    text-shadow: 0 0 6px rgba(0, 255, 150, 0.5),
+                 0 0 12px rgba(0, 255, 180, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8),
+                 0 0 25px rgba(0, 200, 255, 0.6);
+  }
+}
+
+/* Responsive Footer */
+@media screen and (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .footer-text, .footer-quote {
+    font-size: 0.85rem;
+  }
+
+  .footer-icon {
+    font-size: 1.4rem;
+    margin: 0 0.4rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer-icon {
+    font-size: 1.3rem;
+    margin: 0 0.3rem;
+  }
+
+  .footer-content {
+    gap: 0.5rem;
+  }            
+}

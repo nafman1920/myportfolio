@@ -1,0 +1,40 @@
+# Node modules (not used by Bun but just in case)
+node_modules/
+
+# Bun cache & lockfile
+bun.lockb
+.bun/
+
+# Build artifacts
+dist/
+build/
+.next/              # If using Next.js
+out/                # Vite/CRA/Next export builds
+*.log
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.*              # .env.development, .env.local, etc.
+
+# System files
+.DS_Store
+Thumbs.db
+
+# VSCode settings (optional)
+.vscode/
+
+# Coverage from tests
+coverage/
+*.lcov
+
+# Logs and debug
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+bun-debug.log*
+
+# Optional: cache folders from bundlers
+.cache/
+.esbuild/
+.vite/
