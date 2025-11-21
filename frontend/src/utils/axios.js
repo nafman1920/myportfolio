@@ -1,22 +1,20 @@
 // src/utils/axios.js
 import axios from 'axios';
 
-// Axios instance configured for your API
+// ✅ Axios instance configured without forcing Content-Type
 const axiosClient = axios.create({
-  baseURL: '/api', // Adjust if your API isn't proxied
-  withCredentials: true, // ✅ Send cookies (access_token, refresh_token)
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  //baseURL: '/api', // Adjust if not using proxy
+  withCredentials: true, // Send cookies (access_token, refresh_token)
+  // ❌ DO NOT set Content-Type here — let axios set it dynamically
 });
 
-// Optional: Add interceptors to handle auth errors globally
+// ✅ Optional: Add interceptors to handle auth globally
 axiosClient.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
       console.warn('Unauthorized: Session may have expired.');
-      // Optionally redirect or notify user
+      // Optional: Redirect to login or show a toast
     }
     return Promise.reject(error);
   }

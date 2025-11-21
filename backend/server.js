@@ -6,31 +6,35 @@ const dotenv = require('dotenv');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-
 const { forceHttps } = require('./middleware/httpsRedirect');
 
 dotenv.config();
-
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV || 'development';
-
 const app = express();
 
-// Force HTTPS in production
-app.use(forceHttps);
+// ✅ Force HTTPS only in production
+if (NODE_ENV === 'production') {
+  app.use(forceHttps);
+}
 
 // Security headers
 app.use(helmet());
 
-// CORS config for frontend with credentials
+// ✅ CORS: allow Vite dev server in development
 app.use(cors({
-  origin: NODE_ENV === 'production' ? 'https://your-frontend.com' : 'http://localhost:3000',
+  origin: NODE_ENV === 'production'
+    ? 'https://your-frontend.com'
+    : 'http://localhost:5173',  // Vite dev port
   credentials: true
 }));
 
+// Middleware
 app.use(express.json());
 app.use(cookieParser());
 app.use(morgan('dev'));
+
+// Static uploads (optional if using Cloudinary)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // MongoDB Connection
@@ -42,6 +46,7 @@ mongoose.connect(process.env.MONGO_URI, {
 .catch(err => console.error('❌ MongoDB connection error:', err));
 
 // Routes
+// Multer is only applied in project/music routes, not auth
 app.use('/api/projects', require('./Routes/project'));
 app.use('/api/music', require('./Routes/music'));
 app.use('/api/auth', require('./Routes/auth'));
@@ -61,6 +66,7 @@ app.use((err, req, res, next) => {
   });
 });
 
+// Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });

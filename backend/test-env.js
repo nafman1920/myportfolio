@@ -1,0 +1,1 @@
+console.log('ADMIN_HASHED_PASSWORD:', process.env.ADMIN_HASHED_PASSWORD);

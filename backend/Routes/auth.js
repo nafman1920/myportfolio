@@ -59,7 +59,12 @@ router.post('/login', loginLimiter, async (req, res) => {
       return res.status(401).json({ message: 'Invalid username or password' });
     }
 
-    const isMatch = await bcrypt.compare(password, process.env.ADMIN_HASHED_PASSWORD);
+    console.log('🔐 ENV HASH:', process.env.ADMIN_HASHED_PASSWORD);
+console.log('🔑 Incoming password:', password);
+console.log('🧪 Matching...');
+
+const isMatch = await bcrypt.compare(password, process.env.ADMIN_HASHED_PASSWORD);
+console.log('✅ Match result:', isMatch);
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid username or password' });
     }
