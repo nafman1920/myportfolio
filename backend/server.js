@@ -22,12 +22,13 @@ if (NODE_ENV === 'production') {
 app.use(helmet());
 
 // ✅ CORS: allow Vite dev server in development
-app.use(cors({
-  origin: NODE_ENV === 'production'
-    ? 'https://your-frontend.com'
-    : 'http://localhost:5173',  // Vite dev port
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  })
+);
+
 
 // Middleware
 app.use(express.json());
